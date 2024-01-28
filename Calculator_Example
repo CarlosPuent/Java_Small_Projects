@@ -1,0 +1,110 @@
+Here is the code:
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author accpm
+ */
+public class CalculadoraEjercicio {
+
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+
+        double num1, num2;
+        double resultado = 0;
+        int Simbolo;
+        boolean menu = false;
+
+        String separador = "|%10s | %15s | %12s |";
+        String linea = "----------------------------------------------";
+        String separadorQ = "|%30s |";
+
+        while (!menu) {
+            try {
+                System.out.println(linea);
+                System.out.format(separadorQ + "%n", "    BIENVENIDO A MI CALCULADORA VIRTUAL    ");
+                System.out.format(separadorQ + "%n", "       MENÚ DE OPERACIONES A REALIZAR:     ");
+                System.out.println(linea);
+                System.out.format(separador + "%n", "Opción", "Operación", "Símbolo");
+                System.out.println(linea);
+                System.out.format(separador + "%n", "1", "SUMA", "+");
+                System.out.format(separador + "%n", "2", "RESTA", "-");
+                System.out.format(separador + "%n", "3", "MULTIPLICACIÓN", "*");
+                System.out.format(separador + "%n", "4", "DIVISIÓN", "/");
+                System.out.format(separador + "%n", "5", "SALIR", "");
+                System.out.println(linea);
+                System.out.format(separadorQ + "%n", "   ESCRIBA EL NÚMERO SEGÚN LA OPERACIÓN    ");
+                System.out.println(linea);
+
+                Simbolo = scan.nextInt();
+
+                System.out.println(linea);
+
+                switch (Simbolo) {
+                    case 1:
+                        num1 = obtenerNumero(scan, "        ESCRIBA EL PRIMER NÚMERO           ");
+                        System.out.println(linea);
+                        num2 = obtenerNumero(scan, "        ESCRIBA EL SEGUNDO NÚMERO          ");
+                        System.out.println(linea);
+                        resultado = num1 + num2;
+                        break;
+                    case 2:
+                        num1 = obtenerNumero(scan, "        ESCRIBA EL PRIMER NÚMERO           ");
+                        System.out.println(linea);
+                        num2 = obtenerNumero(scan, "        ESCRIBA EL SEGUNDO NÚMERO          ");
+                        System.out.println(linea);
+                        resultado = num1 - num2;
+                        break;
+                    case 3:
+                        num1 = obtenerNumero(scan, "        ESCRIBA EL PRIMER NÚMERO           ");
+                        System.out.println(linea);
+                        num2 = obtenerNumero(scan, "        ESCRIBA EL SEGUNDO NÚMERO          ");
+                        System.out.println(linea);
+                        resultado = num1 * num2;
+                        break;
+                    case 4:
+                        num1 = obtenerNumero(scan, "        ESCRIBA EL PRIMER NÚMERO           ");
+                        System.out.println(linea);
+                        num2 = obtenerNumero(scan, "        ESCRIBA EL SEGUNDO NÚMERO          ");
+                        System.out.println(linea);
+                        if (num2 != 0) {
+                            resultado = num1 / num2;
+                        } else {
+                            System.out.println("No se puede dividir por cero");
+                        }
+                        break;
+                    case 5:
+                        System.out.println("GRACIAS POR USAR MI SISTEMA");
+                        System.exit(0);
+                    default:
+                        System.out.println("Inválido, por favor ingresa un número válido");
+                        break;
+                }
+                System.out.println("EL RESULTADO ES: " + resultado);
+            } catch (Exception e) {
+                System.out.println("ERROR: POR FAVOR SIGA LAS INDICACIÓNES SEGÚN EL MENÚ");
+                scan.nextLine();
+            }
+        }
+    }
+
+    public static double obtenerNumero(Scanner scan, String mensaje) {
+        System.out.format("|%30s |%n", mensaje);
+        double numero = 0;
+        boolean numeroValido = false;
+
+        while (!numeroValido) {
+            try {
+                numero = scan.nextDouble();
+                scan.nextLine();
+                numeroValido = true;
+            } catch (Exception e) {
+                System.out.println("ERROR: Ingresa un número válido.");
+                scan.nextLine();
+            }
+        }
+        return numero;
+    }
+}
